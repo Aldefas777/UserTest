@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UserTest;
 
 public class User : IEquatable<User>
 {
@@ -34,49 +35,38 @@ public class Example
 {
     public static User obj { get; set; }
 
+    
+
     public static void Main()
     {
-        List<User> users = new List<User>();
-        int id = 0;
+        UserRepository repository = new UserRepository();
+        int vib = 0;
 
-        for (int i = 0; i < 2; i++)
+        Console.WriteLine("Введите нужную функцию, 1-Добавить пользоваеля, 2-Вывести нужную функцию, 3-Вывести отсортированный список пользователей, 4-Выход");
+
+        while(vib != 4)
         {
-            Console.WriteLine("Введите нужный ID");
-            id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите имя пользователя");
-            string Name = Console.ReadLine();
+            vib = Convert.ToInt32(Console.ReadLine());
+            switch (vib)
+            {
+                case 1:
+                    repository.AddUser();
+                    break;
+                case 2:
+                    repository.GetUser();
+                    break;
+                case 3:
+                    repository.GetOrderedUser();
+                    break;
+                default:
+                    Console.WriteLine("Такой функции нет");
+                    break;
+            }
 
-            users.Add(new User() { UserName = Name, UserID = id });
         }
-
-        Console.WriteLine("Введите номер записи, который вы хотите вывести");
-
-        id = Convert.ToInt32(Console.ReadLine());
-        obj = users[id-1];
+        
 
 
-        Console.WriteLine();
-
-
-        foreach (User aUser in users)
-        {
-            Console.WriteLine(aUser);
-        }
-        Console.WriteLine("Запись для вывода");
-        Console.WriteLine(obj.ToString());
-
-        Console.WriteLine("Отсортированная запись");
-
-       users.Sort(delegate(User a, User b)
-        {
-            return a.UserID.CompareTo(b.UserID);
-
-        });
-
-        foreach (User aUser in users)
-        {
-            Console.WriteLine(aUser);
-        }
 
         Console.ReadKey();
     }
