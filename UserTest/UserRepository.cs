@@ -10,7 +10,6 @@ namespace UserTest
     public class UserRepository : IUserRepositroy
     {
             List<User> users = new List<User>();
-            int id = 0;
 
 
 
@@ -37,11 +36,6 @@ namespace UserTest
                     return a.UserID == idGet;
                 } );
             return result;
-        }
-        
-        public void Dispose()
-        {
-            Console.ReadKey();
         }
     }
 }
