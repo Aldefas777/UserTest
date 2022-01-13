@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace UserTest
 {
 
-    public class IUserRepository : IUserRepositroy
+    public class UserRepository : IUserRepositroy
     {
             List<User> users = new List<User>();
 

@@ -9,7 +9,7 @@ public class example
 {
     public static void Main()
     {
-        IUserRepository repository = new IUserRepository();
+        IUserRepositroy repository = new UserRepository();
         int vib = 0;
 
         Console.WriteLine("Введите нужную функцию, 1-Добавить пользоваеля, 2-Вывести нужную функцию, 3-Вывести отсортированный список пользователей, 4-Выход");
