@@ -24,21 +24,17 @@ namespace UserTest
             return users;
         }
 
-        public void AddUser(User Item)
+        public void AddUser(int id, string name)
         {
-            int id = Convert.ToInt32(Console.ReadLine());
-            string Name = Console.ReadLine();
-
-            users.Add(new User() { UserName = Name, UserID = id });
+            users.Add(new User() { UserName = name, UserID = id });
         }
 
-        public User GetUser()
+        public User GetUser( int idGet)
         {
-            int id = Convert.ToInt32(Console.ReadLine());
             User result = users.Find(
                 delegate(User a)
                 {
-                    return a.UserID == id;
+                    return a.UserID == idGet;
                 } );
             return result;
         }

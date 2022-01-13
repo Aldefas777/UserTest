@@ -35,9 +35,9 @@ interface IUserRepositroy
 {
     IEnumerable<User> GetOrderedUser();
 
-    void AddUser(User Item);
+    void AddUser(int id, string name);
 
-    User GetUser();
+    User GetUser(int idGet);
 }
 
 public class example
@@ -47,8 +47,11 @@ public class example
         UserRepository repository = new UserRepository();
         for (int i = 0; i < 2; i++)
         {
-            Console.Write("Введите ID и имя пользователя");
-            repository.AddUser(new User());
+            Console.Write("Введите ID ");
+            int id = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите Имя ");
+            string name = Console.ReadLine();
+            repository.AddUser(id, name);
         }
 
 
@@ -58,8 +61,9 @@ public class example
         }
 
         
-        Console.Write("Наберите id нужного пользователя  ");
-        Console.WriteLine(repository.GetUser());
+        Console.Write("Наберите id нужного пользователя ");
+        int idGet = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(repository.GetUser(idGet));
 
         Console.ReadKey();
     }
