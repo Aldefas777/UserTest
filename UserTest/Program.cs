@@ -58,7 +58,7 @@ public class example
         }
 
         
-        Console.Write("Наберите номер записи нужного пользователя  ");
+        Console.Write("Наберите id нужного пользователя  ");
         Console.WriteLine(repository.GetUser());
 
         Console.ReadKey();
