@@ -6,52 +6,46 @@ using System.Threading.Tasks;
 
 namespace UserTest
 {
-    public class UserRepository
+
+    public class UserRepository : IUserRepositroy
     {
-        List<User> users = new List<User>();
-        int id = 0;
-
-       public void AddUser()
-        {
-
-            Console.WriteLine("Введите нужный ID");
-            int id = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите имя пользователя");
-            string Name = Console.ReadLine();
-
-            users.Add(new User() { UserName = Name, UserID = id });
-
-            foreach (User aUser in users)
-            {
-                Console.WriteLine(aUser);
-            }
-
-        }
-
-        public void GetUser()
-        {
-            Console.WriteLine("Введите номер записи, который вы хотите вывести");
-
-            id = Convert.ToInt32(Console.ReadLine());
-            User obj = users[id - 1];
+            List<User> users = new List<User>();
+            int id = 0;
 
 
-            Console.WriteLine("Запись для вывода");
-            Console.WriteLine(obj.ToString());
-        }
 
-        public void GetOrderedUser()
+        public IEnumerable<User> GetOrderedUser()
         {
             users.Sort(delegate (User a, User b)
             {
                 return a.UserID.CompareTo(b.UserID);
 
             });
+            return users;
+        }
 
-            foreach (User aUser in users)
-            {
-                Console.WriteLine(aUser);
-            }
+        public void AddUser(User Item)
+        {
+            int id = Convert.ToInt32(Console.ReadLine());
+            string Name = Console.ReadLine();
+
+            users.Add(new User() { UserName = Name, UserID = id });
+        }
+
+        public User GetUser()
+        {
+            int id = Convert.ToInt32(Console.ReadLine());
+            User result = users.Find(
+                delegate(User a)
+                {
+                    return a.UserID == id;
+                } );
+            return result;
+        }
+        
+        public void Dispose()
+        {
+            Console.ReadKey();
         }
     }
 }
