@@ -23,18 +23,18 @@ namespace UserTest
                 insertCommand.Connection = db;
 
                 
-                insertCommand.CommandText = "INSERT INTO User VALUES (NULL, Name);";
-                insertCommand.Parameters.AddWithValue("Name", inputText);
-                insertCommand.ExecuteNonQuery();
+                insertCommand.CommandText = "INSERT INTO User VALUES (NULL, @Entry);";
+                insertCommand.Parameters.AddWithValue("@Entry", inputText);
+                insertCommand.ExecuteReader();
 
                 db.Close();
             }
 
         }
 
-        public static List<string> GetData()
+        public static List<User> GetData()
         {
-            List<string> entries = new List<string>();
+            List<User> entries = new List<User>();
 
             string dbpath = "D:/Users.db";
             using (SqliteConnection db =
@@ -46,10 +46,9 @@ namespace UserTest
                     ("SELECT Name from User", db);
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
-
                 while (query.Read())
                 {
-                    entries.Add(query.GetString(0));
+                    Console.WriteLine(query.GetString(0));
                 }
 
                 db.Close();
