@@ -8,11 +8,11 @@ namespace UserTest
 {
     public class User
     {
-        public string Name { get; set; }
-        public int Id{ get; set; }
+        public string UserName { get; set; }
+        public int UserID{ get; set; }
         public override string ToString()
         {
-            return "ID: " + Id + " Name: " + Name;
+            return "ID: " + UserId + " Name: " + UserName;
         }
     }
 }
