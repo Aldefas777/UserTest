@@ -12,7 +12,7 @@ namespace UserTest
         public int UserID{ get; set; }
         public override string ToString()
         {
-            return "ID: " + UserId + " Name: " + UserName;
+            return "ID: " + UserID + " Name: " + UserName;
         }
     }
 }
