@@ -23,8 +23,9 @@ namespace UserTest
                 insertCommand.Connection = db;
 
                 
-                insertCommand.CommandText = "INSERT INTO User VALUES (NULL, `@Entry`);";
-                insertCommand.Parameters.AddWithValue("@Entry", inputText);
+                insertCommand.CommandText = "INSERT INTO User VALUES (NULL, Name);";
+                insertCommand.Parameters.AddWithValue("Name", inputText);
+                insertCommand.ExecuteNonQuery();
 
                 db.Close();
             }
