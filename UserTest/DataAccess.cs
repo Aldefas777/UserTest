@@ -11,11 +11,10 @@ namespace UserTest
 {
     public static class DataAccess
     {
-
         public static void AddData(string inputText)
         {
-            string dbpath = "D:/Торренты/UserTest/UserTest.db";
-            using (SqliteConnection db =
+            string dbpath = "D:/Users.db";
+            using (SqliteConnection db = 
               new SqliteConnection($"Filename={dbpath}"))
             {
                 db.Open();
@@ -23,7 +22,8 @@ namespace UserTest
                 SqliteCommand insertCommand = new SqliteCommand();
                 insertCommand.Connection = db;
 
-                insertCommand.CommandText = "INSERT INTO 'User' VALUES (NULL, @Entry);";
+                
+                insertCommand.CommandText = "INSERT INTO User VALUES (NULL, `@Entry`);";
                 insertCommand.Parameters.AddWithValue("@Entry", inputText);
 
                 db.Close();
@@ -35,14 +35,14 @@ namespace UserTest
         {
             List<string> entries = new List<string>();
 
-            string dbpath = "D:/Торренты/UserTest/UserTest.db";
+            string dbpath = "D:/Users.db";
             using (SqliteConnection db =
                new SqliteConnection($"Filename={dbpath}"))
             {
                 db.Open();
 
                 SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT * from 'User'", db);
+                    ("SELECT Name from User", db);
 
                 SqliteDataReader query = selectCommand.ExecuteReader();
 
