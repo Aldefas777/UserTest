@@ -8,10 +8,10 @@ namespace UserTest
 {
     interface IUserRepositroy
     {
-        IEnumerable<User> GetOrderedUser();
+        IEnumerable<User> GetOrderedUser(string connectionString);
 
-        void AddUser(int id, string name);
+        void AddUser(int id, string name, string connconnectionString);
 
-        User GetUser(int idGet);
+        User GetUser(int idGet, string connectionString);
     }
 }

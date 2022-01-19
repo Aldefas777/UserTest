@@ -13,13 +13,9 @@ namespace UserTest
     public class UserRepasitorySQlite : IUserRepositroy
     {
 
-        public void AddUser(int id, string name)
+        public void AddUser(int id, string name, string connectionString)
         {
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("MySQliteConnect.json");
-            var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection");
+
             using (SqliteConnection db =
               new SqliteConnection(connectionString))
             {
@@ -38,15 +34,10 @@ namespace UserTest
             }
         }
 
-        public IEnumerable<User> GetOrderedUser()
+        public IEnumerable<User> GetOrderedUser(string connectionString)
         {
             List<User> entries = new List<User>();
 
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("MySQliteConnect.json");
-            var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection");
             using (SqliteConnection db =
                new SqliteConnection(connectionString))
             {
@@ -67,15 +58,10 @@ namespace UserTest
             return entries;
         }
 
-        public User GetUser(int idGet)
+        public User GetUser(int idGet, string connectionString)
         {
             List<User> entries = new List<User>();
 
-            var builder = new ConfigurationBuilder();
-            builder.SetBasePath(Directory.GetCurrentDirectory());
-            builder.AddJsonFile("MySQliteConnect.json");
-            var config = builder.Build();
-            string connectionString = config.GetConnectionString("DefaultConnection");
             using (SqliteConnection db =
                new SqliteConnection(connectionString))
             {

@@ -19,6 +19,12 @@ public class example
 
         int vib = 0;
 
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("MySQliteConnect.json");
+        var config = builder.Build();
+        string connectionString = config.GetConnectionString("DefaultConnection");
+
         Console.WriteLine("Введите нужную функцию, 1-Добавить пользоваеля, 2-Пользователей, 3-Найти пользователя, 4-Выход");
 
         while (vib != 4)
@@ -31,10 +37,10 @@ public class example
                     int id = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите Имя");
                     string name = Console.ReadLine();
-                    repository.AddUser(id, name);
+                    repository.AddUser(id, name, connectionString);
                     break;
                 case 2:
-                    foreach (User aUser in repository.GetOrderedUser())
+                    foreach (User aUser in repository.GetOrderedUser(connectionString))
                     {
                         Console.WriteLine(aUser);
                     }
@@ -44,7 +50,7 @@ public class example
                 case 3:
                     Console.WriteLine("Введите ID");
                     int idGet = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(repository.GetUser(idGet));
+                    Console.WriteLine(repository.GetUser(idGet, connectionString));
                     break;
                 case 4: 
                     Console.WriteLine("Вы вышли из приложения");

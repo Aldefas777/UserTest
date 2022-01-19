@@ -12,7 +12,7 @@ namespace UserTest
 
 
 
-        public IEnumerable<User> GetOrderedUser()
+        public IEnumerable<User> GetOrderedUser(string connectionString)
         {
             users.Sort(delegate (User a, User b)
             {
@@ -22,12 +22,12 @@ namespace UserTest
             return users;
         }
 
-        public void AddUser(int id, string name)
+        public void AddUser(int id, string name, string connectionString)
         {
             users.Add(new User() { UserName = name, UserID = id });
         }
 
-        public User GetUser(int idGet)
+        public User GetUser(int idGet, string connectionString)
         {
             User result = users.Find(
                 delegate (User a)
