@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using System.Collections.Generic;
 using Windows.Storage;
+using Microsoft.Extensions.Configuration;
 
 namespace UserTest
 {
@@ -14,9 +15,13 @@ namespace UserTest
 
         public void AddUser(int id, string name)
         {
-            string dbpath = "D:/Users.db";
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("MySQliteConnect.json");
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("DefaultConnection");
             using (SqliteConnection db =
-              new SqliteConnection($"Filename={dbpath}"))
+              new SqliteConnection(connectionString))
             {
                 db.Open();
 
@@ -37,9 +42,13 @@ namespace UserTest
         {
             List<User> entries = new List<User>();
 
-            string dbpath = "D:/Users.db";
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("MySQliteConnect.json");
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("DefaultConnection");
             using (SqliteConnection db =
-               new SqliteConnection($"Filename={dbpath}"))
+               new SqliteConnection(connectionString))
             {
                 db.Open();
 
@@ -62,9 +71,13 @@ namespace UserTest
         {
             List<User> entries = new List<User>();
 
-            string dbpath = "D:/Users.db";
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("MySQliteConnect.json");
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("DefaultConnection");
             using (SqliteConnection db =
-               new SqliteConnection($"Filename={dbpath}"))
+               new SqliteConnection(connectionString))
             {
                 db.Open();
                 SqliteCommand selectCommand = new SqliteCommand();

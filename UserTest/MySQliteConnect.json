@@ -8,7 +8,7 @@
     "**/platforms"
   ],
 
-    "ConnectionStrings": {
-      "DefaultConnection": "Data Source=helloapp.db"
-    }
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=D:/Users.db"
+  }
 }
