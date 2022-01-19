@@ -67,7 +67,6 @@ namespace UserTest
                new SqliteConnection($"Filename={dbpath}"))
             {
                 db.Open();
-
                 SqliteCommand selectCommand = new SqliteCommand();
                 selectCommand.Connection = db;
 

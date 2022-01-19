@@ -1,14 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using UserTest;
-
-
-
+using Microsoft.Data.Sqlite;
+using SQLitePCL;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 public class example
 {
-    public static void Main()
+
+    public class ApplicationContext : DbContext
     {
+        public DbSet<User> Users { get; set; } = null!;
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+                : base(options)
+        {
+            Database.EnsureCreated();
+        }
+    }
+
+    public static void Main(string[] args)
+    {
+
+        var builder = new ConfigurationBuilder();
+        builder.SetBasePath(Directory.GetCurrentDirectory());
+        builder.AddJsonFile("MySQliteConnect.json");
+        var config = builder.Build();
+        string connectionString = config.GetConnectionString("DefaultConnection");
+
         IUserRepositroy repository = new UserRepasitorySQlite();
 
         int vib = 0;
