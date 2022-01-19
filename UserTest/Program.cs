@@ -13,11 +13,7 @@ public class example
     public static void Main(string[] args)
     {
 
-        var builder = new ConfigurationBuilder();
-        builder.SetBasePath(Directory.GetCurrentDirectory());
-        builder.AddJsonFile("MySQliteConnect.json");
-        var config = builder.Build();
-        string connectionString = config.GetConnectionString("DefaultConnection");
+        
 
         IUserRepositroy repository = new UserRepasitorySQlite();
 
