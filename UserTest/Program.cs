@@ -13,9 +13,10 @@ public class example
     public static void Main(string[] args)
     {
 
-        
 
-        IUserRepositroy repository = new UserRepasitorySQlite();
+
+        UsersDI usersDI = new UsersDI(new UserRepasitorySQlite());
+
 
         int vib = 0;
 
@@ -37,10 +38,10 @@ public class example
                     int id = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Введите Имя");
                     string name = Console.ReadLine();
-                    repository.AddUser(id, name, connectionString);
+                    usersDI.AddUser(id, name, connectionString);
                     break;
                 case 2:
-                    foreach (User aUser in repository.GetOrderedUser(connectionString))
+                    foreach (User aUser in usersDI.GetOrderedUser(connectionString))
                     {
                         Console.WriteLine(aUser);
                     }
@@ -50,7 +51,7 @@ public class example
                 case 3:
                     Console.WriteLine("Введите ID");
                     int idGet = Convert.ToInt32(Console.ReadLine());
-                    Console.WriteLine(repository.GetUser(idGet, connectionString));
+                    Console.WriteLine(usersDI.GetUser(idGet, connectionString));
                     break;
                 case 4: 
                     Console.WriteLine("Вы вышли из приложения");

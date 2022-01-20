@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UserTest
 {
-    interface IUserRepositroy
+    public interface IUserRepositroy
     {
         IEnumerable<User> GetOrderedUser(string connectionString);
 
